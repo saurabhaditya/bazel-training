@@ -1,0 +1,30 @@
+load("//rules:codegen.bzl", "codegen")
+
+codegen(
+    name = "testgen",
+    key = "test",
+)
+
+py_library(
+    name = "test",
+    srcs = [":testgen"],
+    deps = [],
+)
+
+#py_binary(
+#    name = "testbin",
+#    srcs = ["testbin.py"],
+#    deps = [":test"],
+#)
+
+py_binary(
+    name = "testbin",
+    srcs = ["testbin.py"],
+    deps = [
+        ":test",
+        "@repo_gen//:foo",
+        "@repo_gen//:bar",
+        "@repo_gen//:baz",
+        "@repo_gen//:bat",
+    ],
+)

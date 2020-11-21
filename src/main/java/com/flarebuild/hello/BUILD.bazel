@@ -1,0 +1,18 @@
+load("@io_bazel_rules_docker//java:image.bzl", "java_image")
+load("@io_bazel_rules_docker//container:container.bzl", "container_push")
+
+java_image(
+    name = "hello_image",
+    srcs = ["Hello.java"],
+    main_class = "com.flarebuild.hello.Hello",
+)
+
+container_push(
+    name = "push_hello",
+    format = "Docker",
+    image = ":hello_image",
+    registry = "index.docker.io",
+    repository = "saurabhaditya/hello_image",
+    tag = "{BUILD_TIMESTAMP}",
+    tags = ["manual"],
+)

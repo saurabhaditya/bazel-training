@@ -1,0 +1,7 @@
+load("//rules:play.bzl", "play_module")
+
+play_module(
+    name = "greeter",
+    js = [ "//src/main/play/helloworld/modules/greeter/src:call_greeter_bin", ],
+    visibility = ["//visibility:public"],
+)

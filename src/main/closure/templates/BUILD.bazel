@@ -1,0 +1,35 @@
+load(
+    "@io_bazel_rules_closure//closure:defs.bzl",
+    "closure_js_template_library",
+    "closure_js_library",
+    "closure_js_test",
+)
+
+closure_js_template_library(
+    name = "greeter_soy",
+    srcs = ["greeter.soy"],
+)
+
+closure_js_library(
+    name = "greeter_lib",
+    srcs = ["greeter.js"],
+    deps = [
+        ":greeter_soy",
+        # soy support
+        "@io_bazel_rules_closure//closure/library/soy",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+closure_js_test(
+    name = "greeter_test",
+    timeout = "short",
+    srcs = ["greeter_test.js"],
+    deps = [
+        ":greeter_lib",
+        # testing libs suport
+        "@io_bazel_rules_closure//closure/library/asserts",
+        "@io_bazel_rules_closure//closure/library/testing:asserts",
+        "@io_bazel_rules_closure//closure/library/testing:jsunit",
+    ],
+)

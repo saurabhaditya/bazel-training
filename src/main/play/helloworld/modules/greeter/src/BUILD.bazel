@@ -1,0 +1,26 @@
+load(
+    "@io_bazel_rules_closure//closure:defs.bzl",
+    "closure_js_library",
+    "closure_js_binary",
+)
+
+closure_js_library(
+    name = "call_greeter",
+    srcs = [ "call_greeter.js" ],
+    deps = [ "//src/main/closure/templates:greeter_lib", ],
+)
+
+closure_js_binary(
+    name = "call_greeter_bin",
+    deps = [ ":call_greeter", ],
+    formatting = "PRETTY_PRINT",
+    visibility = ["//visibility:public"]
+)
+
+load("//rules:play.bzl", "play_module")
+
+play_module(
+    name = "greeter",
+    js = [ "//src/main/play/helloworld/modules/greeter/src:call_greeter_bin", ],
+    visibility = ["//visibility:public"],
+)

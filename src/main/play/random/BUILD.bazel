@@ -1,0 +1,7 @@
+load("//rules:play.bzl", "play_module")
+
+play_module(
+    name = "random",
+    deps = [ "@maven//:org_apache_commons_commons_math3", ],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,11 @@
+build:_remote_cache --remote_cache=grpcs://lab-cache.flare.build
+build:_remote_cache --remote_download_toplevel
+
+build:_remote_cache_ro --config=_remote_cache
+build:_remote_cache_ro --noremote_upload_local_results
+
+build:_remote_cache_s3 --remote_cache=https://flare-build-lab-bazel-cache.s3.amazonaws.com/ --remote_download_toplevel
+
+build:_remote_exec --spawn_strategy=remote
+build:_remote_exec --spawn_strategy=remote
+build:_remote_exec --remote_executor=grpc://localhost:8080

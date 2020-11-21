@@ -1,0 +1,8 @@
+load("//rules:play.bzl", "play_app")
+
+play_app(
+    name = "helloworld",
+    css = [ "//src/sass/helloworld" ],
+    modules = ["//src/main/play/helloworld/modules/greeter",
+               "//src/main/play/random"],
+)

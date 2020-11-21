@@ -1,0 +1,6 @@
+load(":toolchain.bzl", "declare_cypher_toolchains")
+package(default_visibility = ["//visibility:public"])
+toolchain_type(
+  name = "cypher_toolchain",
+)
+declare_cypher_toolchains()

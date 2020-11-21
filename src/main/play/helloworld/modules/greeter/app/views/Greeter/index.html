@@ -1,0 +1,12 @@
+<html>
+<head>
+</head>
+<body>
+</body>
+</html>
+
+@* storing name in window *@
+<script> window.name = "${ name ?: 'guest' }"; </script>
+@* call ours greeter template *@
+<script src="@{'/public/javascripts/call_greeter_bin.js'}" type="text/javascript">
+</script>

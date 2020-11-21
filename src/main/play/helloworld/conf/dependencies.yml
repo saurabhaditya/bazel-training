@@ -1,0 +1,4 @@
+require:
+  - play
+  - play -> greeter latest.integration
+  - play -> random latest.integration

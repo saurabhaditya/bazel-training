@@ -1,0 +1,12 @@
+load("//rules:sass.bzl", "sass_binary")
+
+# Import our shared colors and fonts, so we can generate a CSS file.
+sass_binary(
+    name = "helloworld",
+    out = "helloworld.css",
+    src = "main.scss",
+    deps = [
+        "//src/sass/shared",
+    ],
+    visibility = ["//visibility:public"],
+)

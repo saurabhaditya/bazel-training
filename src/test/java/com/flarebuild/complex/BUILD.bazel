@@ -1,0 +1,8 @@
+java_test(
+    name = "ComplexGeneratorTest",
+    srcs = ["ComplexGeneratorTest.java"],
+    deps = [
+        "@maven//:junit_junit",
+        "//src/main/java/com/flarebuild/complex/generator:ComplexGenerator",
+    ],
+)

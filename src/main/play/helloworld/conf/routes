@@ -1,0 +1,4 @@
+GET     /                                       Application.index
+GET     /public/                                staticDir:public
+GET     /greet                                  module:greeter
+GET     /random                                 module:random

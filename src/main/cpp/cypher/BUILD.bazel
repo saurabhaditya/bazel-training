@@ -1,0 +1,39 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+cc_binary(
+    name = "compiler1",
+    srcs = [
+        "compiler.cpp",
+    ],
+    defines = ["CYPHER_OFFSET=1"],
+    visibility = ["//visibility:public"],
+    deps = [":cypher_lib"],
+)
+
+cc_binary(
+    name = "compiler5",
+    srcs = [
+        "compiler.cpp",
+    ],
+    defines = ["CYPHER_OFFSET=5"],
+    visibility = ["//visibility:public"],
+    deps = [":cypher_lib"],
+)
+
+cc_binary(
+    name = "compiler42",
+    srcs = [
+        "compiler.cpp",
+    ],
+    defines = ["CYPHER_OFFSET=42"],
+    visibility = ["//visibility:public"],
+    deps = [":cypher_lib"],
+)
+
+cc_library(
+    name = "cypher_lib",
+    srcs = [
+        "cypher.cpp",
+        "cypher.h",
+    ],
+)

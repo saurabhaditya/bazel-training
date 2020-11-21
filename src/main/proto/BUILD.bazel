@@ -1,0 +1,53 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_java//java:defs.bzl", "java_proto_library")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+
+proto_library(
+    name = "message_object_proto",
+    srcs = ["message_object.proto"],
+    deps = [],
+)
+
+java_proto_library(
+    name = "message_object_proto_java",
+    visibility = ["//src/main/java/com/flarebuild/message:__pkg__",
+                  "//src/main/java/com/flarebuild/echo_client:__pkg__"],
+    deps = [":message_object_proto"],
+)
+
+go_proto_library(
+    name = "message_object_go_proto",
+    proto = ":message_object_proto",
+    visibility = ["//src/main/go/echo_server:__pkg__"],
+    importpath = "message_object",
+)
+
+proto_library(
+    name = "echo_proto",
+    srcs = ["echo.proto"],
+    deps = [":message_object_proto"],
+)
+
+go_proto_library(
+    name = "echo_go_proto_grpc",
+    compiler = "@io_bazel_rules_go//proto:go_grpc",
+    proto = ":echo_proto",
+    importpath = "echo",
+    deps = [":message_object_go_proto"],
+    visibility = ["//src/main/go/echo_server:__pkg__"],
+)
+
+java_proto_library(
+    name = "echo_java_proto",
+    deps = [":echo_proto"],
+    visibility = ["//src/main/java/com/flarebuild/echo_client:__pkg__"],
+)
+
+load("@io_grpc_grpc_java//:java_grpc_library.bzl", "java_grpc_library")
+
+java_grpc_library(
+    name = "echo_java_proto_grpc",
+    srcs = [":echo_proto"],
+    deps = [":echo_java_proto"],
+    visibility = ["//src/main/java/com/flarebuild/echo_client:__pkg__"],
+)

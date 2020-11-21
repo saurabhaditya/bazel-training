@@ -1,0 +1,2 @@
+GET     /?                                      Greeter.index
+GET     /public/                                staticDir:public

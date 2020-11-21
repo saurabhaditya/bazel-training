@@ -1,0 +1,11 @@
+load("//rules:sass.bzl", "sass_library")
+
+# make a :shared target that includes both colors and fonts.
+sass_library(
+    name = "shared",
+    srcs = [
+        "colors.scss",
+        "fonts.scss",
+    ],
+    visibility = ["//visibility:public"],
+)
